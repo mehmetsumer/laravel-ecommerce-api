@@ -19,7 +19,8 @@ class CreateCompanyPackagesTable extends Migration
             $table->integer("package_id")->unsigned();
             $table->foreign("company_id")->references("id")->on("companies");
             $table->foreign("package_id")->references("id")->on("packages");
-            $table->integer("status")->default(1);
+            $table->integer("status")->unsigned();
+            $table->integer("type")->unsigned();
             $table->timestamp("start_date")->default(now());
             $table->timestamp("end_date")->nullable(); // aylık ise 1 ay sonrasına, yıllık ise 1 yıl sonrasına yapılacak.
             $table->timestamps();

@@ -8,7 +8,6 @@ use App\Models\CompanyPackage;
 use App\Models\CompanyPayment;
 use App\Models\Package;
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
@@ -35,11 +34,20 @@ class DatabaseSeeder extends Seeder
                 'package_name' => Str::random(15),
             ]);
             $package_id = $last->id;
+
+            $type = rand(0, 1);
+            if ($type == 0) {
+                $end_date = now()->addMonth();
+            } else {
+                $end_date = now()->addYear();
+            }
             CompanyPackage::create([
                 'company_id' => $company_id,
                 'package_id' => $package_id,
                 'status' => 1,
-                'end_date' => now()->addYear(),
+                'type' => $type,
+                'start_date' => now(),
+                'end_date' => $end_date,
             ]);
             CompanyPayment::create([
                 'company_id' => $company_id,
@@ -47,7 +55,6 @@ class DatabaseSeeder extends Seeder
                 'status' => 1,
             ]);
         }
-
-
     }
+
 }

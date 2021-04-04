@@ -11,5 +11,5 @@ class CompanyPayment extends Model
 
     public $timestamps = false;
     protected $table = "company_payments";
-    protected $fillable = [ "company_id", "payment" ];
+    protected $fillable = [ "company_id", "payment", "status" ];
 }

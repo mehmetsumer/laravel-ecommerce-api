@@ -11,7 +11,7 @@ class CompanyPackage extends Model
 
     public $timestamps = false;
     protected $table = "company_packages";
-    protected $fillable = [ "company_id", "package_id", "start_date", "end_date" ];
+    protected $fillable = [ "company_id", "package_id", "start_date", "end_date", "status" ];
 
     public function company()
     {

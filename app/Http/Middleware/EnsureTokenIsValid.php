@@ -22,7 +22,7 @@ class EnsureTokenIsValid
         {
             $response = [
                 'status' => 2,
-                'message' => $request->header('Authorization'),
+                'message' => "Token not found.",
             ];
             return response()->json($response, 413);
         }

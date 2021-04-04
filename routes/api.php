@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\ApiController as ApiControllerAlias;
+use App\Http\Controllers\CompanyController as CompanyControllerAlias;
+use App\Http\Controllers\CompanyPackageController as CompanyPackageControllerAlias;
+use App\Http\Controllers\CompanyPaymentController as CompanyPaymentControllerAlias;
+use App\Http\Controllers\PackageController as PackageControllerAlias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,16 +18,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ApiControllerAlias::class, 'index'])->name('api.index');
+Route::get('/', [CompanyControllerAlias::class, 'index'])->name('index');
 
 Route::group(['prefix' => 'company'], function () {
     Route::middleware(['istokenvalid'])->group(function () {
-        Route::post('/', [ApiControllerAlias::class, 'checkCompany'])->name('api.checkCompany');
-        Route::post('/packages/new', [ApiControllerAlias::class, 'addCompanyPackage'])->name('api.add_company_package');
-        Route::post('/payments/new', [ApiControllerAlias::class, 'addPayment'])->name('api.add_payment');
+        Route::post('/', [CompanyControllerAlias::class, 'check'])->name('company.check');
+        Route::post('/packages/new', [CompanyPackageControllerAlias::class, 'add'])->name('companypackage.add');
+        Route::post('/payments/new', [CompanyPaymentControllerAlias::class, 'add'])->name('companypayment.add');
     });
 
-    Route::post('/new', [ApiControllerAlias::class, 'addCompany'])->name('api.add_company');
+    Route::post('/new', [CompanyControllerAlias::class, 'add'])->name('company.add');
 });
 
-Route::post('/packages/new', [ApiControllerAlias::class, 'addPackage'])->name('api.add_package');
+Route::post('/packages/new', [PackageControllerAlias::class, 'add'])->name('package.add');

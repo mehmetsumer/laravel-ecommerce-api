@@ -18,7 +18,7 @@ class CreateCompanyPaymentsTable extends Migration
             $table->integer("company_id")->unsigned();
             $table->foreign("company_id")->references("id")->on("companies");
             $table->float("payment");
-            $table->integer("status")->default(1);
+            $table->integer("status")->unsigned();
             $table->timestamp("payment_date")->default(now());
         });
     }
