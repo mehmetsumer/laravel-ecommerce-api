@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Stringable;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +15,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\CheckPaymentsCmd::class,
     ];
 
     /**
@@ -24,7 +26,22 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('chk:payments')
+            ->everyFiveMinutes()
+            ->onSuccess(function (Stringable $output) {
+                echo $output;
+            })
+            ->onFailure(function (Stringable $output) {
+                echo "Görev Failed";
+            })
+            ->before(function () {
+                echo "birazdan başlıyo";
+            })
+            ->after(function () {
+                echo "bitti";
+            });;
+
+        //$schedule->job(new CheckPaymentsJob())->everyMinute();
     }
 
     /**

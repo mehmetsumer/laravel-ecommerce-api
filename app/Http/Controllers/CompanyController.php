@@ -24,7 +24,7 @@ class CompanyController extends Controller
             $res["package"] = "No Active Package Found.";
         }
         $request->attributes->add($res);
-        return dd($request->attributes);
+        return print_r($request->attributes);
     }
 
     public function add(Request $request)

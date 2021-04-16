@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [CompanyControllerAlias::class, 'index'])->name('index');
+//Route::get('/{id}', [CompanyPaymentControllerAlias::class, 'check'])->name('index');
 
 Route::group(['prefix' => 'company'], function () {
     Route::middleware(['istokenvalid'])->group(function () {

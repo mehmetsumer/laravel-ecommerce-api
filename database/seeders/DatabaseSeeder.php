@@ -37,22 +37,17 @@ class DatabaseSeeder extends Seeder
 
             $type = rand(0, 1);
             if ($type == 0) {
-                $end_date = now()->addMonth();
+                $end_date = "2020-04-08 15:13:00";
             } else {
-                $end_date = now()->addYear();
+                $end_date = "2021-03-08 15:13:00";
             }
             CompanyPackage::create([
                 'company_id' => $company_id,
                 'package_id' => $package_id,
                 'status' => 1,
                 'type' => $type,
-                'start_date' => now(),
+                'start_date' => "2020-03-08 15:13:00",
                 'end_date' => $end_date,
-            ]);
-            CompanyPayment::create([
-                'company_id' => $company_id,
-                'payment' => rand(100, 1000),
-                'status' => 1,
             ]);
         }
     }
