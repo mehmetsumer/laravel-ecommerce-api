@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Workout Planner</title>
+        <title>Workout Planner - Workout title gelicek.</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -52,26 +52,12 @@
                         <div class="p-6">
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    <p><strong style="font-size: 25px">Gizli Token: </strong>{{$token}}</p>
-                                    <p><strong style="font-size: 25px">Paylaşım Tokenı: </strong>{{$shareToken}}</p>
-                                    <h2>Nasıl çalışır?</h2>
-                                    <p>Antrenman ve beslenme programınızı hazırlarsınız ve kaydedersiniz.</p>
-                                    <p>İsterseniz hızlı bir şekilde hesap oluşturarak devam eder, isterseniz size verilen token ile <a href="#">workout.program/(token)</a>
-                                     adresinden programa ulaşabilirsiniz.</p>
-                                    <p>Programı başkasıyla paylaşmak için Paylaşım Token' ını kullanmalısınız. Kendi token' ınızı verirseniz o kişi de
-                                     programınızı <a href="#">workout.program/edit/(token)</a> adresinden değiştirebilir. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br><br>
-                <div class="col-md-12 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div class="p-6">
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    <h2>Buraya program ekleme formu gelicek.</h2>
+                                    <p>{{$program->name}}</p>
+{{--                                    @foreach ($program->workout as $i => $work)--}}
+{{--                                        @foreach ($work as $j => $item)--}}
+{{--                                            <p>{{ $item }}</p>--}}
+{{--                                        @endforeach--}}
+{{--                                    @endforeach--}}
                                 </div>
                             </div>
                         </div>

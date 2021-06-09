@@ -4,6 +4,7 @@ use App\Http\Controllers\CompanyController as CompanyControllerAlias;
 use App\Http\Controllers\CompanyPackageController as CompanyPackageControllerAlias;
 use App\Http\Controllers\CompanyPaymentController as CompanyPaymentControllerAlias;
 use App\Http\Controllers\PackageController as PackageControllerAlias;
+use App\Http\Controllers\ProgramsController as ProgramsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,17 +19,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [CompanyControllerAlias::class, 'index'])->name('index');
+//Route::get('/', [CompanyControllerAlias::class, 'index'])->name('index');
 //Route::get('/{id}', [CompanyPaymentControllerAlias::class, 'check'])->name('index');
 
-Route::group(['prefix' => 'company'], function () {
-    Route::middleware(['istokenvalid'])->group(function () {
-        Route::post('/', [CompanyControllerAlias::class, 'check'])->name('company.check');
-        Route::post('/packages/new', [CompanyPackageControllerAlias::class, 'add'])->name('companypackage.add');
-        Route::post('/payments/new', [CompanyPaymentControllerAlias::class, 'add'])->name('companypayment.add');
-    });
-
-    Route::post('/new', [CompanyControllerAlias::class, 'add'])->name('company.add');
+Route::group(['prefix' => 'programs'], function () {
+    Route::get('/{token}', [ProgramsController::class, 'get'])->name('program.get');
+    Route::post('/add', [ProgramsController::class, 'add'])->name('program.add');
+    Route::put('/update/{token}', [ProgramsController::class, 'update'])->name('program.update');
+    Route::delete('/delete/{token}', [ProgramsController::class, 'delete'])->name('program.delete');
 });
 
-Route::post('/packages/new', [PackageControllerAlias::class, 'add'])->name('package.add');
+Route::delete('/seed', [ProgramsController::class, 'seed'])->name('seed');

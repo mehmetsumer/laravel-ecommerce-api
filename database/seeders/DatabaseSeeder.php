@@ -3,10 +3,13 @@
 namespace Database\Seeders;
 
 use App\Classes\Helper;
+use App\Models\Area;
 use App\Models\Company;
 use App\Models\CompanyPackage;
 use App\Models\CompanyPayment;
+use App\Models\Move;
 use App\Models\Package;
+use App\Models\WorkoutDay;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -19,37 +22,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0;$i<5;$i++) {
-            $last = Company::create([
-                'site_url' => Str::random(15),
-                'name' => Str::random(5),
-                'lastname' => Str::random(5),
-                'company_name' => Str::random(10),
-                'email' => Str::random(15),
-                'password' => bcrypt('password'),
-                'token' => Helper::quickRandom(40),
-            ]);
-            $company_id = $last->id;
-            $last = Package::create([
-                'package_name' => Str::random(15),
-            ]);
-            $package_id = $last->id;
+        Area::create([ 'name' => 'Omuz', 'type' => 0 ]);
+        Area::create([ 'name' => 'Bacak', 'type' => 1 ]);
+        Area::create([ 'name' => 'Göğüs', 'type' => 0 ]);
+        Area::create([ 'name' => 'Sırt', 'type' => 1 ]);
+        Area::create([ 'name' => 'Ön Kol', 'type' => 0 ]);
+        Area::create([ 'name' => 'Arka Kol', 'type' => 0 ]);
 
-            $type = rand(0, 1);
-            if ($type == 0) {
-                $end_date = "2020-04-08 15:13:00";
-            } else {
-                $end_date = "2021-03-08 15:13:00";
-            }
-            CompanyPackage::create([
-                'company_id' => $company_id,
-                'package_id' => $package_id,
-                'status' => 1,
-                'type' => $type,
-                'start_date' => "2020-03-08 15:13:00",
-                'end_date' => $end_date,
-            ]);
-        }
+        Move::create([ 'name' => 'Shoulder Press', 'area_id' => 1]);
+        Move::create([ 'name' => 'Dumbell Lateral Raise', 'area_id' => 1]);
+        Move::create([ 'name' => 'Squat', 'area_id' => 2]);
+        Move::create([ 'name' => 'Leg Press', 'area_id' => 2]);
+        Move::create([ 'name' => 'Bench Press', 'area_id' => 3]);
+        Move::create([ 'name' => 'Dumbell Fly', 'area_id' => 3]);
+        Move::create([ 'name' => 'Deadlift', 'area_id' => 4]);
+        Move::create([ 'name' => 'Pulldown', 'area_id' => 4]);
+        Move::create([ 'name' => 'Incline Dumbell', 'area_id' => 5]);
+        Move::create([ 'name' => 'Barbell Curl', 'area_id' => 5]);
+        Move::create([ 'name' => 'Dips', 'area_id' => 6]);
+        Move::create([ 'name' => 'Skullcrusher', 'area_id' => 6]);
+
+        WorkoutDay::create([]);
+
+
     }
 
 }
